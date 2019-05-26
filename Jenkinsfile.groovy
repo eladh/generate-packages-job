@@ -20,7 +20,7 @@ podTemplate(label: 'jenkins-pipeline' , cloud: 'k8s' , containers: [
                                         -e 'ARTIFACTORY_USER=$USER' \
                                         -e 'ARTIFACTORY_PASSWORD=$PASSWORD' \
                                         -e 'ARTIFACTORY_REPO=$REPO_NAME' \
-                                        -e 'PACKAGES_CLONE_MAX_LEVEL=$PACKAGE_CLONE_MAX_LEVEL' \
+                                        -e 'PACKAGE_CLONE_MAX_LEVEL=$PACKAGE_CLONE_MAX_LEVEL' \
                                         -e 'PACKAGES_DUPLICATION_RATE=$PACKAGES_DUPLICATION_RATE' \
                                         -e 'PACKAGE_NUMBER=$NUM_OF_ARTIFACTS' \
                                         -e 'PACKAGE_SIZE_MIN=$PACKAGE_SIZE_MIN' \
