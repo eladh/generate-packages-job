@@ -1,6 +1,3 @@
-def server = Artifactory.server "artifactory"
-def rtFullUrl = server.url
-
 firstTimeInit()
 
 podTemplate(label: 'jenkins-pipeline' , cloud: 'k8s' , containers: [
@@ -16,7 +13,7 @@ podTemplate(label: 'jenkins-pipeline' , cloud: 'k8s' , containers: [
         stage('Docker build') {
             withCredentials([usernamePassword(credentialsId: 'artifactorypass', usernameVariable: 'USER', passwordVariable: 'PASSWORD')]) {
                 container('docker') {
-                    sh("docker run --rm -e 'ARTIFACTORY_URL=$rtFullUrl' \
+                    sh("docker run --rm -e 'ARTIFACTORY_URL=$ARTIFACTORY_URL' \
                                         -e 'ARTIFACTORY_USER=$USER' \
                                         -e 'ARTIFACTORY_PASSWORD=$PASSWORD' \
                                         -e 'ARTIFACTORY_REPO=$REPO_NAME' \
@@ -32,9 +29,10 @@ podTemplate(label: 'jenkins-pipeline' , cloud: 'k8s' , containers: [
 }
 
 void firstTimeInit() {
-    if  (params.PACKAGES_DUPLICATION_RATE == null) {
+    if  (params.ARTIFACTORY_URL == null) {
         properties([
                 parameters([
+                        string(name: 'ARTIFACTORY_URL', defaultValue: '' ,description: 'please select artifactory url',),
                         string(name: 'PACKAGE_TYPE', defaultValue: '' ,description: 'please select - maven/npm/generic',),
                         string(name: 'REPO_NAME', defaultValue: '' ,description: 'Please select target repo name',),
                         string(name: 'PACKAGE_SIZE_MIN', defaultValue: '' ,description: 'Please select min size',),
