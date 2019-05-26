@@ -20,20 +20,27 @@ podTemplate(label: 'jenkins-pipeline' , cloud: 'k8s' , containers: [
                                         -e 'ARTIFACTORY_USER=$USER' \
                                         -e 'ARTIFACTORY_PASSWORD=$PASSWORD' \
                                         -e 'ARTIFACTORY_REPO=$REPO_NAME' \
-                                        -e 'PACKAGE_SIZE_MIN=1' \
-                                        -e 'PACKAGE_SIZE_MAX=$NUM_OF_ARTIFACTS' eladhr/$PACKAGE_TYPE-generator:1.0")
+                                        -e 'PACKAGES_CLONE_MAX_LEVEL=$PACKAGES_CLONE_MAX_LEVEL' \
+                                        -e 'PACKAGES_DUPLICATION_RATE=$PACKAGES_DUPLICATION_RATE' \
+                                        -e 'PACKAGE_NUMBER=$NUM_OF_ARTIFACTS' \
+                                        -e 'PACKAGE_SIZE_MIN=$PACKAGE_SIZE_MIN' \
+                                        -e 'PACKAGE_SIZE_MAX=$PACKAGE_SIZE_MAX'  eladhr/$PACKAGE_TYPE-generator:1.0")
                 }
             }
         }
     }
 }
-//
+
 void firstTimeInit() {
-    if  (params.NUM_OF_ARTIFACTS == null) {
+    if  (params.PACKAGES_DUPLICATION_RATE == null) {
         properties([
                 parameters([
                         string(name: 'PACKAGE_TYPE', defaultValue: '' ,description: 'please select - maven/npm/generic',),
                         string(name: 'REPO_NAME', defaultValue: '' ,description: 'Please select target repo name',),
+                        string(name: 'PACKAGE_SIZE_MIN', defaultValue: '' ,description: 'Please select min size',),
+                        string(name: 'PACKAGE_SIZE_MAX', defaultValue: '' ,description: 'Please select max size',),
+                        string(name: 'PACKAGES_CLONE_MAX_LEVEL', defaultValue: '' ,description: 'Please select max clone level',),
+                        string(name: 'PACKAGES_DUPLICATION_RATE', defaultValue: '' ,description: 'Please select duplication rate',),
                         string(name: 'NUM_OF_ARTIFACTS', defaultValue: '' ,description: 'Please select num of artifacts to generate',),
                 ])
         ])
