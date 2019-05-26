@@ -21,7 +21,7 @@ podTemplate(label: 'jenkins-pipeline' , cloud: 'k8s' , containers: [
                                         -e 'PACKAGES_DUPLICATION_RATE=$PACKAGES_DUPLICATION_RATE' \
                                         -e 'PACKAGE_NUMBER=$NUM_OF_ARTIFACTS' \
                                         -e 'PACKAGE_SIZE_MIN=$PACKAGE_SIZE_MIN' \
-                                        -e 'PACKAGE_SIZE_MAX=$PACKAGE_SIZE_MAX'  eladhr/$PACKAGE_TYPE-generator:1.0")
+                                        -e 'PACKAGE_SIZE_MAX=$PACKAGE_SIZE_MAX'  eladhr/$PACKAGE_TYPE-generator:2.0")
                 }
             }
         }
