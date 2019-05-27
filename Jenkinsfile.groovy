@@ -21,7 +21,7 @@ podTemplate(label: 'jenkins-pipeline' , cloud: 'k8s' , containers: [
                                         -e 'PACKAGES_DUPLICATION_RATE=$PACKAGES_DUPLICATION_RATE' \
                                         -e 'PACKAGE_NUMBER=$NUM_OF_ARTIFACTS' \
                                         -e 'PACKAGE_SIZE_MIN=$PACKAGE_SIZE_MIN' \
-                                        -e 'PACKAGE_SIZE_MAX=$PACKAGE_SIZE_MAX'  eladhr/$PACKAGE_TYPE-generator:2.0")
+                                        -e 'PACKAGE_SIZE_MAX=$PACKAGE_SIZE_MAX'  eladhr/generic-generator:2.0")
                 }
             }
         }
@@ -33,7 +33,6 @@ void firstTimeInit() {
         properties([
                 parameters([
                         string(name: 'ARTIFACTORY_URL', defaultValue: '' ,description: 'please select artifactory url',),
-                        string(name: 'PACKAGE_TYPE', defaultValue: '' ,description: 'please select - maven/npm/generic',),
                         string(name: 'REPO_NAME', defaultValue: '' ,description: 'Please select target repo name',),
                         string(name: 'PACKAGE_SIZE_MIN', defaultValue: '' ,description: 'Please select min size',),
                         string(name: 'PACKAGE_SIZE_MAX', defaultValue: '' ,description: 'Please select max size',),
