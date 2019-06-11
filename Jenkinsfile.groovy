@@ -32,10 +32,10 @@ void firstTimeInit() {
     if  (params.ARTIFACTORY_URL == null) {
         properties([
                 parameters([
-                        string(name: 'ARTIFACTORY_URL', defaultValue: '' ,description: 'please select artifactory url',),
+                        string(name: 'ARTIFACTORY_URL', defaultValue: '' ,description: 'please select artifactory url - http://xxx.xxx.xxx.xxx/artifactory',),
                         string(name: 'REPO_NAME', defaultValue: '' ,description: 'Please select target repo name',),
-                        string(name: 'PACKAGE_SIZE_MIN', defaultValue: '' ,description: 'Please select min size',),
-                        string(name: 'PACKAGE_SIZE_MAX', defaultValue: '' ,description: 'Please select max size',),
+                        string(name: 'PACKAGE_SIZE_MIN', defaultValue: '' ,description: 'Please select min size (bytes) ',),
+                        string(name: 'PACKAGE_SIZE_MAX', defaultValue: '' ,description: 'Please select max size (bytes)',),
                         string(name: 'NUM_OF_ARTIFACTS', defaultValue: '' ,description: 'Please select num of artifacts to generate',),
                 ])
         ])
